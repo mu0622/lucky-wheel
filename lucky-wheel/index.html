@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>刺猬充电大抽奖</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-panel" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Hedgehog Charging Lucky Draw</p>
+          <h1 id="page-title">刺猬充电大抽奖</h1>
+          <p class="hero-text">输入姓名后开始抽奖，中奖结果会进入获奖名单，方便现场核对。</p>
+        </div>
+
+        <div class="status-strip" aria-label="抽奖状态">
+          <div>
+            <span class="status-label">抽奖人</span>
+            <strong id="player-name">待输入</strong>
+          </div>
+          <div>
+            <span class="status-label">奖品数量</span>
+            <strong id="prize-count">5</strong>
+          </div>
+          <div>
+            <span class="status-label">今日机会</span>
+            <strong id="chance-count">1</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage">
+        <div class="wheel-area" aria-label="抽奖转盘">
+          <div class="pointer" aria-hidden="true"></div>
+          <div class="wheel-frame">
+            <svg id="wheel-svg" class="wheel-svg" viewBox="0 0 420 420" role="img" aria-label="奖品转盘"></svg>
+            <button id="spin-button" class="spin-button" type="button" aria-label="开始抽奖">
+              <span>开始</span>
+              <small>抽奖</small>
+            </button>
+          </div>
+          <p id="spin-hint" class="spin-hint">准备好了就点击开始</p>
+        </div>
+
+        <aside class="control-panel" aria-label="奖品与规则">
+          <div class="panel-section">
+            <div class="section-heading">
+              <span></span>
+              <h2>奖品池</h2>
+            </div>
+            <div id="prize-list" class="prize-list"></div>
+          </div>
+
+          <div class="panel-section">
+            <div class="section-heading">
+              <span></span>
+              <h2>活动规则</h2>
+            </div>
+            <ul class="rule-list">
+              <li>每个人每天只有 1 次抽奖机会。</li>
+              <li>获奖名单保存在当前浏览器中，刷新页面后仍可查看。</li>
+            </ul>
+          </div>
+
+          <div class="panel-section winner-section">
+            <div class="section-heading">
+              <span></span>
+              <h2>获奖名单</h2>
+            </div>
+            <div id="winner-list" class="winner-list"></div>
+          </div>
+
+          <div class="panel-actions">
+            <button id="switch-user-button" class="secondary-button" type="button">切换抽奖人</button>
+            <button id="clear-winners-button" class="secondary-button danger" type="button">清空名单</button>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <div id="name-modal" class="modal is-open" aria-hidden="false">
+      <div class="modal-backdrop"></div>
+      <section class="modal-dialog name-dialog" role="dialog" aria-modal="true" aria-labelledby="name-title">
+        <p class="modal-kicker">开始前</p>
+        <h2 id="name-title">请输入抽奖人姓名</h2>
+        <p>姓名会展示在获奖名单中，用于后续核对。</p>
+        <form id="name-form" class="name-form">
+          <label class="sr-only" for="name-input">抽奖人姓名</label>
+          <input id="name-input" type="text" maxlength="20" autocomplete="name" placeholder="例如：张三" required />
+          <button class="primary-button" type="submit">进入抽奖</button>
+        </form>
+      </section>
+    </div>
+
+    <div id="result-modal" class="modal" aria-hidden="true">
+      <div class="modal-backdrop" data-close-modal></div>
+      <section class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="result-title">
+        <button class="modal-close" type="button" aria-label="关闭弹窗" data-close-modal>×</button>
+        <div id="result-visual" class="result-visual"></div>
+        <p class="modal-kicker">恭喜获得</p>
+        <h2 id="result-title">奖品名称</h2>
+        <p id="result-desc">请在活动页面完成后续领取流程。</p>
+        <button class="primary-button" type="button" data-close-modal>知道了</button>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
